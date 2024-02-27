@@ -1,0 +1,32 @@
+---
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: Invoke Lambda Function
+description: Invoke an AWS Lambda function with code and Docker image
+inputs:
+  function-name:
+    description:  lambda function name to invoke
+    required: true
+  parameters:
+    description: The JSON that you want to provide to your Lambda function as input
+    required: false  
+
+
+
+runs:
+  using: composite
+  steps:
+    - id: invokeLambdaFunction
+      name: Invoke Lambda Function
+      uses: 'docker://public.ecr.aws/l7o7z1g8/actions/lambda-invoke-function:main-006e12dd58311836ee77f6b19441f988497f9414'
+      env:
+        INPUT_FUNCTION_NAME: ${{ inputs.function-name}}
+        INPUT_PARAMETERS: ${{ inputs.parameters}} 
+      shell: sh
+      run: |
+        set +x
+      
+        cd /app
+
+        ./aws_lambda_invoke_app
+        

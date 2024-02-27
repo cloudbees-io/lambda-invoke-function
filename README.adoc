@@ -1,0 +1,61 @@
+= CloudBees action: Invoke AWS Lambda function
+
+Use this action to invoke a function in AWS Lambda serverless architecture.
+Run code in AWS Lambda without provisioning or managing servers.
+
+== Prerequisites
+
+Add link:https://github.com/cloudbees-io/configure-aws-credentials[CloudBees action: Configure AWS credentials] to your YAML file to initialize the connection with your AWS credentials.
+
+== Inputs
+
+[cols="2a,1a,1a,3a",options="header"]
+.Input details
+|===
+
+| Input name
+| Data type
+| Required?
+| Description
+
+
+| `function-name`
+| String
+| Yes
+| The AWS Lambda function name.
+
+| `parameters`
+| String
+| No
+| The JSON that you want to provide to your Lambda function as input. 
+
+
+
+|===
+
+== Usage example
+
+=== To Invoke an AWS Lambda function using an ECR image
+
+In your YAML file, add:
+
+[source,yaml]
+----
+      - id: invokeLambdaFunction
+        name: Invoke AWS lambda function
+        uses: cloudbees-io/lambda-invoke-function@v1
+        with:         
+          function-name: my-function
+          
+
+----
+
+== License
+
+This code is made available under the 
+link:https://opensource.org/license/mit/[MIT license].
+
+== References
+
+* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform-actions/latest/[using actions in CloudBees workflows].
+* Learn about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform/latest/[the CloudBees platform].
