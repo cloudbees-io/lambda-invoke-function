@@ -5,7 +5,19 @@ Run code in AWS Lambda without provisioning or managing servers.
 
 == Prerequisites
 
-Add link:https://github.com/cloudbees-io/configure-aws-credentials[CloudBees action: Configure AWS credentials] to your YAML file to initialize the connection with your AWS credentials.
+Make sure to initialize the connection using your AWS credentials, by adding the following to your YAML file:
+
+[source,yaml]
+----
+      - name: Configure AWS credentials
+        uses: cloudbees-io/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.MY_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.MY_SECRET_KEY }}
+          aws-region: eu-west-3
+----
+
+Refer to link:https://github.com/cloudbees-io/configure-aws-credentials[CloudBees action: Configure AWS credentials] for more information.
 
 == Inputs
 
@@ -18,35 +30,29 @@ Add link:https://github.com/cloudbees-io/configure-aws-credentials[CloudBees act
 | Required?
 | Description
 
-
 | `function-name`
 | String
 | Yes
-| The AWS Lambda function name.
+| The instruction set architecture that the function supports.
 
 | `parameters`
-| String
+| JSON
 | No
-| The JSON that you want to provide to your Lambda function as input. 
-
-
+| The input you want to provide to your Lambda function, formatted as JSON data in key/value pairs.
 
 |===
 
 == Usage example
 
-=== To Invoke an AWS Lambda function using an ECR image
-
 In your YAML file, add:
 
 [source,yaml]
 ----
-      - id: invokeLambdaFunction
-        name: Invoke AWS lambda function
+      - name: Invoke AWS lambda function
+        id: invokeLambdaFunction
         uses: cloudbees-io/lambda-invoke-function@v1
-        with:         
+        with:
           function-name: my-function
-          
 
 ----
 
