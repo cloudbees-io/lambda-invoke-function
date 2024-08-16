@@ -33,7 +33,7 @@ Refer to link:https://github.com/cloudbees-io/configure-aws-credentials[CloudBee
 | `function-name`
 | String
 | Yes
-| The instruction set architecture that the function supports.
+| The AWS Lambda function name.
 
 | `parameters`
 | JSON
