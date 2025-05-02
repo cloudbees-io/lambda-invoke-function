@@ -18,7 +18,7 @@ runs:
   steps:
     - id: invokeLambdaFunction
       name: Invoke Lambda Function
-      uses: docker://public.ecr.aws/l7o7z1g8/actions/lambda-invoke-function:main-fa5b24d1de723b5f9b082cac0102ea9b205bd6e5
+      uses: docker://public.ecr.aws/l7o7z1g8/actions/lambda-invoke-function:main-e559a1650752aabc5b746c4cd64c94fe1199c08b
       env:
         INPUT_FUNCTION_NAME: ${{ inputs.function-name}}
         INPUT_PARAMETERS: ${{ inputs.parameters}} 
